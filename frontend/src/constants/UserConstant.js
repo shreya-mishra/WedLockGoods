@@ -1,0 +1,18 @@
+export const User_REGISTER_REQUEST = 'User_REGISTER_REQUEST'
+export const User_REGISTER_FAIL = 'User_REGISTER_FAIL'
+export const User_REGISTER_SUCCESS = 'User_REGISTER_SUCCESS'
+
+export const User_LOGIN_REQUEST = 'User_LOGIN_REQUEST'
+export const User_LOGIN_FAIL = 'User_LOGIN_FAIL'
+export const User_LOGIN_SUCCESS = 'User_LOGIN_SUCCESS'
+export const USER_LOGOUT = 'USER_LOGOUT'
+
+export const User_DETAILS_REQUEST = 'User_DETAILS_REQUEST'
+export const User_DETAILS_FAIL = 'User_DETAILS_FAIL'
+export const User_DETAILS_SUCCESS = 'User_DETAILS_SUCCESS'
+export const USER_DETAILS_RESET = 'USER_DETAILS_RESET'
+
+export const User_UPDATE_PROFILE_REQUEST = 'User_UPDATE_PROFILE_REQUEST'
+export const User_UPDATE_PROFILE_FAIL = 'User_UPDATE_PROFILE_FAIL'
+export const User_UPDATE_PROFILE_SUCCESS = 'User_UPDATE_PROFILE_SUCCESS'
+export const User_UPDATE_PROFILE_RESET = 'User_UPDATE_PROFILE_RESET'
