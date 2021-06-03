@@ -9,10 +9,13 @@ import LoginScreen from './components/screens/LoginScreen/LoginScreen';
 import OrderScreen from './components/screens/OrderScreen/OrderScreen';
 import PaymentScreen from './components/screens/PaymentScreen/PaymentScreen';
 import PlaceOrderScreen from './components/screens/PlaceOrderScreen/PlaceOrderScreen';
+import ProductListScreen from './components/screens/ProductListScreen/ProductListScreen';
 import ProductScreen from './components/screens/ProductScreen/ProductScreen';
 import ProfileScreen from './components/screens/ProfileScreen/ProfileScreen';
 import RegisterScreen from './components/screens/RegisterScreen/RegisterScreen';
 import ShippingScreen from './components/screens/ShippingScreen/ShippingScreen';
+import UserEditScreen from './components/screens/UserEditScreen.js/UserEditScreen';
+import UserListScreen from './components/screens/UserListScreen/UserListScreen';
 
 function App() {
   return (
@@ -31,6 +34,10 @@ function App() {
           <Route path='/profile' component={ProfileScreen} exact />
           <Route path='/product/:id' component={ProductScreen} exact />
           <Route path='/cart/:id?' component={CartScreen} />
+          <Route path="/admin/userList" component={UserListScreen} />
+          <Route path="/admin/productList" component={ProductListScreen} />
+
+          <Route path="/admin/user/:id" component={UserEditScreen} />
           <Route path='/' component={Home} exact />
 
 
