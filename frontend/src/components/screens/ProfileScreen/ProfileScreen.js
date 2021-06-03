@@ -7,6 +7,7 @@ import { listMyOrders } from "../../../actions/OrderActions";
 import {getUserDetails, updateUserProfile } from "../../../actions/UserActions";
 import Loader from "../../Loader/Loader";
 import Message from "../../Message/Message";
+import { User_UPDATE_PROFILE_RESET } from "../../../constants/UserConstant";
 
 const ProfileScreen = ({ location, history }) => {
     const[name,setName] = useState("")
@@ -19,12 +20,15 @@ const ProfileScreen = ({ location, history }) => {
     const dispatch = useDispatch();
 
     const userDetails = useSelector((state) => state.userDetails);
+    console.log("userDetails",userDetails)
     const { loading, user, error } = userDetails;
  
     const userLogin = useSelector((state) => state.userLogin);
     const {userInfo } = userLogin;
 
     const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+        console.log("userUpdate",userUpdateProfile)
+
     const {success } = userUpdateProfile;
 
     const orderListMy = useSelector((state) => state.orderListMy);
@@ -36,13 +40,14 @@ const ProfileScreen = ({ location, history }) => {
             history.push('/login');
         }else{
             if(!user || !user.name || success){
+                dispatch({ type: User_UPDATE_PROFILE_RESET });
+
                 dispatch(getUserDetails('profile'));
                 dispatch(listMyOrders())
             }else{
                 setName(user.name)
                 setEmail(user.email)
-                console.log(user)
-
+                console.log("user",user)
             }
 
         }
@@ -57,8 +62,8 @@ const ProfileScreen = ({ location, history }) => {
         console.log(user)
         console.log(name,email)
         // DISPATCH UPDATE PROFILE
-      dispatch(updateUserProfile({ id: userInfo._id, name, email, password }));
-    }
+        dispatch(updateUserProfile({ id: userInfo._id, name, email, password }));
+        }
     };
 
     return <Row>
