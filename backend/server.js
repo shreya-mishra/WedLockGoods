@@ -17,16 +17,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 app.use(express.json());
-
-app.use("/api/products/", productRoute);
-app.use("/api/users", userRoute);
-app.use("/api/orders", orderRoute);
-app.use("/api/upload", uploadRoute);
-app.get("/api/config/paypal", (req, res) => {
-  console.log("client id ", process.env.PAYAL_CLIENT_ID);
-  res.send(process.env.PAYAL_CLIENT_ID);
-});
-
 const __dirname = path.resolve();
 console.log("DIR", __dirname);
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
@@ -44,6 +34,15 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running....");
   });
 }
+
+app.use("/api/products/", productRoute);
+app.use("/api/users", userRoute);
+app.use("/api/orders", orderRoute);
+app.use("/api/upload", uploadRoute);
+app.get("/api/config/paypal", (req, res) => {
+  console.log("client id ", process.env.PAYAL_CLIENT_ID);
+  res.send(process.env.PAYAL_CLIENT_ID);
+});
 
 // ----------------------------------------------------
 app.use(NotFound);
