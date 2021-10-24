@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 app.use("/api/products/", productRoute);
+app.use("/api", productRoute);
 app.use("/api/users", userRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/upload", uploadRoute);
