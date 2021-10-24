@@ -11,7 +11,7 @@ const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
-  console.log(cart)
+  console.log("cart here", cart);
 
   //   Calculate prices
   const addDecimals = (num) => {
@@ -31,8 +31,10 @@ const PlaceOrderScreen = ({ history }) => {
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
+  console.log("order Create >> ", orderCreate);
 
   useEffect(() => {
+    console.log("n a useEffect");
     if (success) {
       history.push(`/order/${order._id}`);
       // dispatch({ type: ORDER_CREATE_RESET });
@@ -41,6 +43,7 @@ const PlaceOrderScreen = ({ history }) => {
   }, [history, success]);
 
   const placeOrderHandler = () => {
+    console.log("inside place order handler");
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -59,7 +62,7 @@ const PlaceOrderScreen = ({ history }) => {
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
-          <ListGroup variant="flush">
+          <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -81,7 +84,7 @@ const PlaceOrderScreen = ({ history }) => {
               {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
-                <ListGroup variant="flush">
+                <ListGroup variant='flush'>
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
@@ -111,7 +114,7 @@ const PlaceOrderScreen = ({ history }) => {
         </Col>
         <Col md={4}>
           <Card>
-            <ListGroup variant="flush">
+            <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
@@ -140,15 +143,14 @@ const PlaceOrderScreen = ({ history }) => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                {error && <Message variant="danger">{error}</Message>}
+                {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
-                  type="button"
-                  className="btn-block"
+                  type='button'
+                  className='btn-block'
                   disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}
-                >
+                  onClick={placeOrderHandler}>
                   Place Order
                 </Button>
               </ListGroup.Item>

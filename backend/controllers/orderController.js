@@ -32,7 +32,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     });
 
     const createdOrder = await order.save();
-
+    console.log("Created Order", createdOrder);
     res.status(201).json(createdOrder);
   }
 });
@@ -58,6 +58,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @route   GET /api/orders/:id/pay
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
+  console.log("i am in update order");
   const order = await Order.findById(req.params.id);
 
   if (order) {
@@ -87,39 +88,39 @@ const getMyOrders = asyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-// // @desc    Get all orders
-// // @route   GET /api/orders
-// // @access  Private/Admin
-// const getOrders = asyncHandler(async (req, res) => {
-//   const orders = await Order.find({}).populate("user", "id name");
-//   res.json(orders);
-// });
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
+const getOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate("user", "id name");
+  console.log("ORDERS>", orders);
+  res.json(orders);
+});
 
-// // @desc    Update order to delivered
-// // @route   GET /api/orders/:id/deliver
-// // @access  Private/Admin
-// const updateOrderToDelivered = asyncHandler(async (req, res) => {
-//   const order = await Order.findById(req.params.id);
+// @desc    Update order to delivered
+// @route   GET /api/orders/:id/deliver
+// @access  Private/Admin
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
 
-//   if (order) {
-//     order.isDelivered = true;
-//     order.deliveredAt = Date.now();
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
 
-//     const updatedOrder = await order.save();
+    const updatedOrder = await order.save();
 
-//     res.json(updatedOrder);
-//   } else {
-//     res.status(404);
-//     throw new Error("Order not found");
-//   }
-// });
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+});
 
 export {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
-    getMyOrders,
-//   updateOrderToDelivered,
-
-//   getOrders,
+  getMyOrders,
+  updateOrderToDelivered,
+  getOrders,
 };
