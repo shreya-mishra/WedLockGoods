@@ -1,1 +1,1 @@
-web: node www/main.js
+web: node backend/server.js
