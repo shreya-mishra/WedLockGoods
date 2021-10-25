@@ -29,13 +29,17 @@ app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYAL_CLIENT_ID);
 });
 
+console.log("node env", __dirname + "/frontend/build");
 // -----------------------DEPLOYMENT----------------------------
 if (process.env.NODE_ENV === "production") {
+  console.log(" in a iff");
+
   app.use(express.static(path.join(__dirname, "/frontend/build")));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
   });
 } else {
+  console.log(" in a else");
   app.get("/", (req, res) => {
     res.send("API is running...");
   });
