@@ -35,17 +35,20 @@ const OrderScreen = ({ match, history }) => {
   const { userInfo } = userLogin;
   if (!loading) {
     //   Calculate prices
+
     const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2);
     };
 
+    console.log("ORDERITEM", order.orderItems);
     order.itemsPrice = addDecimals(
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
     );
+    console.log("order items", order.itemsPrice);
   }
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo === undefined || userInfo.length === 0) {
       history.push("/login");
     }
     const addPayPalScript = async () => {

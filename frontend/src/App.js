@@ -29,7 +29,7 @@ function App() {
           <Route path='/shipping' component={ShippingScreen} exact />
           <Route path='/payment' component={PaymentScreen} exact />
           <Route path='/placeOrder' component={PlaceOrderScreen} exact />
-          <Route path='/order/:id' component={OrderScreen} />
+          <Route path='/order/:id' component={OrderScreen} exact />
           <Route path='/admin/orderlist' component={OrderListScreen} />
 
           <Route path='/register' component={RegisterScreen} exact />

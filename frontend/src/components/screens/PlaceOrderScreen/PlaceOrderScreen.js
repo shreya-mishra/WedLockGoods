@@ -34,13 +34,15 @@ const PlaceOrderScreen = ({ history }) => {
   console.log("order Create >> ", orderCreate);
 
   useEffect(() => {
-    console.log("n a useEffect");
-    if (success) {
+    console.log("n a useEffect", success);
+    if (success && order._id) {
+      console.log("inside success");
+
       history.push(`/order/${order._id}`);
       // dispatch({ type: ORDER_CREATE_RESET });
     }
-    // eslint-disable-next-line
-  }, [history, success]);
+    console.log("inside success", success);
+  }, [history, success, order]);
 
   const placeOrderHandler = () => {
     console.log("inside place order handler");

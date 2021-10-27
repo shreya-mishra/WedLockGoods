@@ -45,6 +45,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       type: ORDER_CREATE_SUCCESS,
       payload: data,
     });
+    return Promise.resolve({ id: data._id });
   } catch (error) {
     console.log("error is thrown");
     dispatch({
@@ -54,6 +55,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
           ? error.response.data.message
           : error.message,
     });
+    return Promise.reject();
   }
 };
 

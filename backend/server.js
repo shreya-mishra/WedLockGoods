@@ -17,8 +17,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 app.use(express.json());
-const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use("/api/products/", productRoute);
 app.use("/api/users", userRoute);
@@ -28,6 +26,8 @@ app.get("/api/config/paypal", (req, res) => {
   console.log("client id ", process.env.PAYAL_CLIENT_ID);
   res.send(process.env.PAYAL_CLIENT_ID);
 });
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 console.log("node env", __dirname + "/frontend/build");
 // -----------------------DEPLOYMENT----------------------------
