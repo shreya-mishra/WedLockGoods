@@ -58,7 +58,6 @@ const LoginScreen = ({ location, history }) => {
         </Button>
         <div style={{ height: "30px" }} />
         <Button
-          //   type='submit'
           varient='primary'
           onClick={() => {
             setPassword("12345");
